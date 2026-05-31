@@ -131,7 +131,37 @@ def try_general_question_response(response, call_id, user_input, state):
 # =============================
 @app.route("/", methods=["GET"])
 def health():
-    return "✅ Real AI Sales Agent is running with ACTUAL course knowledge!"
+    return "✅ Real AI Sales Agent is running with ACTUAL course knowledge!"# HEALTH CHECK
+# =============================
+@app.route("/", methods=["GET"])
+def health():
+    return """
+    <h1>🎙️ AI Voice Sales Agent</h1>
+
+    <p>
+    An AI-powered voice calling assistant built using Python, Flask, Twilio, and Railway.
+    </p>
+
+    <h3>Features</h3>
+    <ul>
+        <li>AI-powered voice conversations</li>
+        <li>Real-time speech recognition</li>
+        <li>Course inquiry handling</li>
+        <li>Fee information support</li>
+        <li>Demo class booking</li>
+        <li>Human-like AI responses</li>
+    </ul>
+
+    <h3>Tech Stack</h3>
+    <p>Python | Flask | Twilio | Railway | GitHub</p>
+
+    <h3>GitHub Repository</h3>
+    <a href="https://github.com/DeepaShekali/AI_CALL_AGENT">
+        View Source Code
+    </a>
+
+    <p><b>Status:</b> ✅ Live and Running</p>
+    """
 
 
 # =============================
