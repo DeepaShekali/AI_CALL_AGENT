@@ -129,9 +129,7 @@ def try_general_question_response(response, call_id, user_input, state):
 # =============================
 # HEALTH CHECK
 # =============================
-@app.route("/", methods=["GET"])
-def health():
-    return "✅ Real AI Sales Agent is running with ACTUAL course knowledge!"# HEALTH CHECK
+
 # =============================
 @app.route("/", methods=["GET"])
 def health():
