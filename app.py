@@ -217,48 +217,67 @@ def trigger_call():
 # =============================
 # INITIAL VOICE CALL ENDPOINT
 # =============================
+
 @app.route("/voice", methods=["GET", "POST"])
 def voice():
-    """
-    When student receives the call, this is what they hear first
-    """
-    call_id = request.form.get("CallSid", "default")
-    phone = request.form.get("From", "unknown")
-    
-    # Store student phone number for booking
-    student_phone[call_id] = phone
-    
-    call_state[call_id] = {
-        "stage": "intro",
-        "questions_asked": 0,
-        "demo_offered": False,
-        "course_selected": None,
-        "demo_date": None,
-        "demo_time": None,
-        "student_name": None,
-        "student_mobile": None
-    }
-    
-    response = VoiceResponse()
-    
-    gather = Gather(
-        input="speech",
-        action="/process",
-        method="POST",
-        timeout=10,
-        speechTimeout="auto",
-        language="en-IN"
-    )
-    
-    opening = get_intro_message()
-    interest_q = get_interest_check()
-    full_message = opening + " " + interest_q
-    
-    gather.say(full_message, voice="Polly.Aditi", language="en-IN")
-    response.append(gather)
-    
-    return str(response)
+    from twilio.twiml.voice_response import VoiceResponse, Gather
 
+    response = VoiceResponse()
+
+    try:
+        call_id = request.form.get("CallSid", "default")
+        phone = request.form.get("From", "unknown")
+
+        # SAFE dict initialization
+        if call_id not in student_phone:
+            student_phone[call_id] = phone
+
+        if call_id not in call_state:
+            call_state[call_id] = {
+                "stage": "intro",
+                "questions_asked": 0,
+                "demo_offered": False,
+                "course_selected": None,
+                "demo_date": None,
+                "demo_time": None,
+                "student_name": None,
+                "student_mobile": None
+            }
+
+        # SAFE function calls
+        try:
+            opening = get_intro_message()
+            interest_q = get_interest_check()
+        except Exception:
+            opening = "Welcome to our institute."
+            interest_q = "Are you interested in courses?"
+
+        full_message = opening + " " + interest_q
+
+        gather = Gather(
+            input="speech",
+            action="/process",
+            method="POST",
+            timeout=10,
+            speechTimeout="auto",
+            language="en-IN"
+        )
+
+        gather.say(full_message, voice="Polly.Aditi", language="en-IN")
+        response.append(gather)
+
+        return str(response)
+
+    except Exception as e:
+        # CRASH PROTECTION (VERY IMPORTANT)
+        response.say(
+            "Sorry, system error occurred. Please try again later.",
+            voice="Polly.Aditi",
+            language="en-IN"
+        )
+        print("VOICE ERROR:", str(e))
+        return str(response)
+   
 # =============================
 # MAIN PROCESSING ENDPOINT
 # =============================
