@@ -316,7 +316,7 @@ def process():
     print(f"\n[Turn {current_turn}] Student: {user_input}")
     
     # =============================
-    # INITIAL STAGE: YES/NO T@app.route("/process"O BECOME SOFTWARE ENGINEER
+    # INITIAL STAGE: YES/NO TO BECOME SOFTWARE ENGINEER
     # =============================
     if state["stage"] == "intro":
         if is_affirmative(user_input):
@@ -566,4 +566,9 @@ if __name__ == "__main__":
     print("✅ Talks like experienced institute sales counselor")
     print("✅ Human-like responses with intelligence")
     print("✅ Uses real knowledge base for answers\n")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port, debug=False)
