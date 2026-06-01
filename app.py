@@ -217,7 +217,7 @@ def trigger_call():
 # =============================
 # INITIAL VOICE CALL ENDPOINT
 # =============================
-@app.route("/voice", methods=["POST"])
+@app.route("/voice", methods=["GET", "POST"])
 def voice():
     """
     When student receives the call, this is what they hear first
@@ -316,7 +316,7 @@ def process():
     print(f"\n[Turn {current_turn}] Student: {user_input}")
     
     # =============================
-    # INITIAL STAGE: YES/NO TO BECOME SOFTWARE ENGINEER
+    # INITIAL STAGE: YES/NO T@app.route("/process"O BECOME SOFTWARE ENGINEER
     # =============================
     if state["stage"] == "intro":
         if is_affirmative(user_input):
