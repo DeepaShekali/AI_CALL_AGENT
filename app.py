@@ -560,12 +560,13 @@ def process():
 # =============================
 # RUN THE APP
 # =============================
-import os 
+
 if __name__ == "__main__":
     print("\n🚀 Starting ADVANCED AI Sales Agent (10+ Years Experience)...")
     print("📱 Webhook endpoint: POST /voice")
     print("✅ Talks like experienced institute sales counselor")
     print("✅ Human-like responses with intelligence")
     print("✅ Uses real knowledge base for answers\n")
-    port = int(os.environ.get("PORT", 5000))
+    import os
+    port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
