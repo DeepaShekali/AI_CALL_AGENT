@@ -279,32 +279,51 @@ def voice():
         return str(response)
    
 # =============================
-# MAIN PROCESSING ENDPOINT
-# =============================
+#
 @app.route("/process", methods=["POST"])
 def process():
-    """
-    MAIN ENGINE: Listens to student, detects question, gives REAL answer
-    """
-    user_input = request.form.get("SpeechResult", "").strip()
-    print("\n" + "="*50)
-    print("USER SAID:", user_input)
-    print("="*50)
-    call_id = request.form.get("CallSid", "default")
-    
-    response = VoiceResponse()
-    state = get_state(call_id)
-    current_turn = get_turn(call_id)
+    try:
+        user_input = request.form.get("SpeechResult", "").strip()
+        call_id = request.form.get("CallSid", "default")
 
-    gather = Gather(
-        input="speech",
-        action="/process",
-        method="POST",
-        timeout=10,
-        speechTimeout="auto",
-        language="en-IN"
-    )
-    
+        print("\nUSER SAID:", user_input)
+
+        response = VoiceResponse()
+        state = get_state(call_id)
+        current_turn = get_turn(call_id)
+
+        gather = Gather(
+            input="speech",
+            action="/process",
+            method="POST",
+            timeout=10,
+            speechTimeout="auto",
+            language="en-IN"
+        )
+
+        # ❗ HANDLE EMPTY INPUT
+        if not user_input:
+            response.say(
+                "Sorry, I did not hear you clearly. Please repeat.",
+                voice="Polly.Aditi",
+                language="en-IN"
+            )
+            response.append(gather)
+            return str(response)
+
+        # Example simple response (safe test)
+        response.say(
+            f"You said: {user_input}",
+            voice="Polly.Aditi",
+            language="en-IN"
+        )
+
+        response.append(gather)
+        return str(response)
+
+    except Exception as e:
+        print("PROCESS ERROR:", e)
+        return str(VoiceResponse().say("Sorry system error occurred"))
     # =============================
     # HANDLE NO SPEECH
     # =============================
