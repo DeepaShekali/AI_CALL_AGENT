@@ -289,9 +289,8 @@ def process():
         print("\nUSER SAID:", user_input)
 
         response = VoiceResponse()
-        state = get_state(call_id)
-        current_turn = get_turn(call_id)
 
+        # ALWAYS VALID GATHER
         gather = Gather(
             input="speech",
             action="/process",
@@ -301,48 +300,35 @@ def process():
             language="en-IN"
         )
 
-        # ❗ HANDLE EMPTY INPUT
+        # If nothing heard
         if not user_input:
-            response.say(
-                "Sorry, I did not hear you clearly. Please repeat.",
+            gather.say(
+                "Sorry, I didn't hear you clearly. Please repeat.",
                 voice="Polly.Aditi",
                 language="en-IN"
             )
             response.append(gather)
             return str(response)
 
-        # Example simple response (safe test)
-        response.say(
-            f"You said: {user_input}",
-            voice="Polly.Aditi",
-            language="en-IN"
-        )
+        # SAFE RESPONSE
+        reply = f"You said: {user_input}"
 
+        response.say(reply, voice="Polly.Aditi", language="en-IN")
         response.append(gather)
+
         return str(response)
 
     except Exception as e:
-        print("PROCESS ERROR:", e)
-        return str(VoiceResponse().say("Sorry system error occurred"))
-    # =============================
-    # HANDLE NO SPEECH
-    # =============================
-    if not user_input:
-        response.say(
-            "Sorry, I could not hear you clearly. Please repeat. Ask about course, fees, placements, or anything else.",
+        print("PROCESS ERROR:", str(e))
+
+        fallback = VoiceResponse()
+        fallback.say(
+            "Sorry, system error occurred. Please try again.",
             voice="Polly.Aditi",
             language="en-IN"
         )
-        response.append(gather)
-        return str(response)
-    
-    # =============================
-    # HANDLE HARD EXIT
-    # =============================
-    if any(word in user_input.lower() for word in ["stop calling", "don't call", "remove me", "not interested at all"]):
-        response.say("Okay, no problem! All the best!", voice="Polly.Aditi", language="en-IN")
-        response.hangup()
-        return str(response)
+        return str(fallback)
+
     
     # =============================
     # TRACK THE CONVERSATION
@@ -607,4 +593,5 @@ if __name__ == "__main__":
     print("✅ Uses real knowledge base for answers\n")
     import os
     port = int(os.environ.get("PORT", 8080))
+
     app.run(host="0.0.0.0", port=port)
