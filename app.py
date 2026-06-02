@@ -265,6 +265,9 @@ def process():
     """
     user_input = request.form.get("SpeechResult", "").strip()
     call_id = request.form.get("CallSid", "default")
+    print("\n" + "="*50)
+    print("USER SAID:", user_input)
+    print("="*50)
     
     response = VoiceResponse()
     state = get_state(call_id)
