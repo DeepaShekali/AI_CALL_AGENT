@@ -68,8 +68,13 @@ def home():
 @app.route("/voice", methods=["GET", "POST"])
 def voice():
     response = VoiceResponse()
-    gather = Gather(input="speech", action="/process", method="POST")
-
+    gather = Gather(
+    input="speech",
+    action="/process",
+    method="POST",
+    timeout=5,
+    speechTimeout="auto"
+)
     gather.say("Hello, are you interested in course? Say yes or no")
     response.append(gather)
 
@@ -80,17 +85,38 @@ def voice():
 # =============================
 @app.route("/process", methods=["POST"])
 def process():
-    user_input = request.form.get("SpeechResult", "")
+    try:
+        user_input = request.form.get("SpeechResult", "")
 
-    response = VoiceResponse()
+        response = VoiceResponse()
 
-    if "yes" in user_input.lower():
-        response.say("Great! We will contact you.")
-    else:
-        response.say("Okay thank you!")
+        if not user_input:
+            response.say("Sorry, I didn't hear you. Please try again.")
+            response.redirect("/voice")
+            return str(response)
 
-    response.hangup()
-    return str(response)
+        user_input = user_input.lower()
+
+        if "yes" in user_input:
+            response.say("Great! We will contact you soon.")
+            response.hangup()
+
+        elif "no" in user_input:
+            response.say("Okay thank you!")
+            response.hangup()
+
+        else:
+            response.say("Please say yes or no.")
+            response.redirect("/voice")
+
+        return str(response)
+
+    except Exception as e:
+        print("ERROR:", e)
+        response = VoiceResponse()
+        response.say("System error. Try again later.")
+        response.hangup()
+        return str(response)
 
 # =============================
 # RUN (IMPORTANT FOR RAILWAY)
