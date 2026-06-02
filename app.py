@@ -532,4 +532,4 @@ if __name__ == "__main__":
     print("✅ Talks like experienced institute sales counselor")
     print("✅ Human-like responses with intelligence")
     print("✅ Uses real knowledge base for answers\n")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
