@@ -189,7 +189,7 @@ def trigger_call():
 # =============================
 # INITIAL VOICE CALL ENDPOINT
 # =============================
-@app.route("/voice", methods=["POST"])
+@app.route("/voice", methods=["GET", "POST"])
 def voice():
     """
     When student receives the call, this is what they hear first
