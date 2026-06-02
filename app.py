@@ -60,11 +60,21 @@ def is_negative(text):
     text_lower = text.lower()
     return any(word in text_lower for word in ["no", "don't", "dont", "nah", "not interested", "కాదు", "లేదు"])
 
-
 def add_to_history(call_id, role, text):
     if call_id not in conversation_history:
         conversation_history[call_id] = []
-    conversation_history[call_id].append({"role": role, "text": text})
+
+    conversation_history[call_id].append({
+        "role": role,
+        "text": text
+    })
+
+    # Print in terminal
+    print(f"{role}: {text}")
+
+    # Save to file
+    with open("conversation_log.txt", "a", encoding="utf-8") as f:
+        f.write(f"{role}: {text}\n")
 
 
 def get_turn(call_id):
@@ -129,11 +139,25 @@ def try_general_question_response(response, call_id, user_input, state):
 # =============================
 # HEALTH CHECK
 # =============================
-@app.route("/", methods=["GET"])
+@app.route("/")
 def health():
-    return "✅ Real AI Sales Agent is running with ACTUAL course knowledge!"
+    return """
+    <h1>AI Voice Sales Agent</h1>
 
+    <p>Built using Python, Flask, Twilio and Railway.</p>
 
+    <h3>Features</h3>
+    <ul>
+        <li>AI Voice Conversations</li>
+        <li>Course Inquiry Handling</li>
+        <li>Demo Class Booking</li>
+        <li>Twilio Voice Integration</li>
+    </ul>
+
+    <p>GitHub: https://github.com/DeepaShekali/AI_CALL_AGENT</p>
+
+    <p>For live demo contact the developer.</p>
+    """
 # =============================
 # SIMPLE WEB DASHBOARD
 # =============================
