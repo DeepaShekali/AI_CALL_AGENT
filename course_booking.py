@@ -40,7 +40,6 @@ class CourseBookingManager:
 
         f"Would you like to attend a free demo class and experience the training? Please respond with Yes or No."
     )
-    
     def get_demo_booking_message(self, course_name):
         """Offer to book demo slot"""
         course = get_course_info(course_name)
@@ -49,17 +48,16 @@ class CourseBookingManager:
 
         if not course:
             return (
-                f"కూల్ బ్రో! మీ slot book చేసుకోవడానికి ఇదిగో free demo options ఉన్నాయి బ్రో. "
-                f"Available days: {days_str} బ్రో. "
-                f"దయచేసి Monday, Tuesday, Wednesday, Thursday లేదా Friday లో ఒకటి చెప్పండి బ్రో."
-            )
-        
+            f"Great! We can schedule your free demo session. "
+            f"Available days are: {days_str}. "
+            f"Please choose a convenient day: Monday, Tuesday, Wednesday, Thursday, or Friday."
+          )
+
         return (
-            f"కూల్ బ్రో! నీ demo slot book చేస్తానా బ్రో? "
-            f"Available days: {days_str} బ్రో. "
-            f"నీకు ఏ day convenient బ్రో? Please say Monday, Tuesday, Wednesday, Thursday, or Friday బ్రో."
-        )
-    
+            f"Excellent! Would you like to schedule your demo session for the {course['name']} program? "
+            f"Available days are: {days_str}. "
+            f"Please let me know which day works best for you: Monday, Tuesday, Wednesday, Thursday, or Friday."
+       )
     def get_demo_time_message(self):
         """Ask for preferred demo time"""
         return (

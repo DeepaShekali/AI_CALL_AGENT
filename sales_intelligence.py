@@ -1,6 +1,10 @@
 # Advanced Sales Intelligence for 10+ Years Experience Sales Person
 # This module handles conversations like a seasoned institute sales person
 
+from http.client import responses
+
+from http.client import responses
+
 from knowledge_base import COURSE_INFO, FAQS
 
 class SalesIntelligence:
@@ -52,19 +56,28 @@ class SalesIntelligence:
     
     def get_mid_flow_answer_intro(self, question_type):
         """
-        Introduction before answering mid-flow questions in Telugu slang
+        Introduction before answering mid-flow questions in professional English
         """
+
         responses = {
-            "fees_and_discounts": "నీకు సరైన question బ్రో! ఈ investment గురించి honest explain చేస్తాను బ్రో. ",
-            "placement_guarantee": "చాలా important question బ్రో! నేను నా 10 years experience నుండి చెప్తాను బ్రో. ",
-            "course_timing": "Schedule ఖచ్చితంగా flexible బ్రో! నీ convenience చూసి చెప్తా బ్రో. ",
-            "projects_real": "ఇది చాలా practical question బ్రో! నేను students నిర్మిన real projects చూపిస్తాను బ్రో. ",
-            "prerequisite_skills": "నీకు confusion ఉందా బ్రో? అందుకే నేను ఉన్నాను బ్రో. Clear చేస్తాను బ్రో. ",
-            "what_is_full_stack": "బాగుందా బ్రో! నీకు simple example ఇస్తా బ్రో - నీరు understand చేసుకుంటారు బ్రో. ",
-            "salary_expectations": "Salary గురించి నేను honest explain చేస్తాను బ్రో - realistic figures బ్రో. ",
-            "placement": "Placements గురించి నేను నా students నుండి నేరుగా stories చెప్తాను బ్రో. "
+        "fees_and_discounts": "That's a great question. Let me explain the investment details clearly and transparently. ",
+        
+        "placement_guarantee": "That's an important question. Based on my experience, let me give you a clear and honest explanation. ",
+        
+        "course_timing": "We offer flexible schedules designed to suit your convenience. Let me explain how it works. ",
+        
+        "projects_real": "That's a very practical question. Let me walk you through the real projects our students work on. ",
+        
+        "prerequisite_skills": "I understand your concern. Let me clarify everything step by step for you. ",
+        
+        "what_is_full_stack": "Great question. Let me explain it with a simple example so it's easy to understand. ",
+        
+        "salary_expectations": "Let me give you an honest and realistic overview of expected salary ranges. ",
+        
+        "placement": "Let me share real success stories and placement outcomes from our students. "
         }
-        return responses.get(question_type, "ఈ question గురించి నీకు clear చేస్తాను బ్రో: ")
+        return responses.get(question_type, "Let me clarify this for you in a simple and clear way. ")
+    
     
     def get_after_answer_continuation(self):
         """
