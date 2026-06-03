@@ -36,11 +36,9 @@ class SalesIntelligence:
         Response when student shows interest in Telugu slang
         """
         return (
-            "బాగుంది బ్రో! నీ interest చూసి నాకు చాలా సంతోషం. "
-            "నేను నీకు ఏమైనా చెప్తాను బ్రో. "
-            "ఈ course లో నీరు actual industry practices, real projects, job-ready skills నేర్చుకుంటావు బ్రో. "
-            "మన 85% students ని నేను personally చూసాను - top companies లో placed అవ్వటం. "
-            "ఇప్పుడు నీకు specifically ఏమైనా తెలుసుకోవాలనుకుంటున్నావా బ్రో?"
+            "That's great! I'm happy to hear you're interested. "
+        "Our courses are designed with real projects, practical training, "
+        "and job-ready skills. What would you like to know about the course?"
         )
     
     def get_rejection_response(self):
