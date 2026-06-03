@@ -71,14 +71,24 @@ class SalesIntelligence:
         Smart follow-up after answering questions
         """
         continuations = [
-            "ఇక్కడ చెప్పిన విషయాలు clear అయ్యాయా బ్రో? నీకు ఇంకా doubt ఉందా బ్రో?",
-            "ఈ answer సరిపోతుందా బ్రో? నీకు మరో angle నుండి విచారించాలనుకుంటున్నావా బ్రో?",
-            "ఇది account చేసుకో బ్రో - నీకు ఇదే answer చాలా సాధారణమైనది. More detail కావాలా బ్రో?",
-            "నీ concern clear అయ్యాలని నేను నిశ్చితం బ్రో. ఇంకా question ఉందా బ్రో?",
-            "ఇక్కడ చెప్పిన విషయం నీకు convincing అయ్యాయా బ్రో? మీకు నా numbers trust చేయవచ్చు బ్రో.",
-            "నీకు ఇంకా ఏమైనా doubt ఉందా బ్రో? నేను clear చేస్తాను బ్రో - ఏమైనా అడుగు బ్రో.",
-            "ఈ explanation సరిపోతుందా బ్రో? నీకు practical example కావాలా బ్రో?",
-            "మీరు ఇంకా ఏమైనా తెలుసుకోవాలనుకుంటున్నారా బ్రో? నేను ఉన్నాను బ్రో."
+            "I hope that gives you a clear understanding. Is there anything else you'd like me to explain in more detail?",
+
+            "Does that answer your question, or would you like me to walk you through it step by step?",
+
+           "I want to make sure you have all the information you need to make the right decision. What else would you like to know?",
+
+           "That's one of the most common questions students ask. Would you like to know how it applies to your career goals?",
+
+           "I hope that helps. Are there any concerns or questions you'd like me to clarify further?",
+
+           "Feel free to ask anything about the curriculum, fees, projects, internships, or placements. I'm here to help.",
+
+          "Many students have similar questions before joining. Is there any specific area you'd like more information about?",
+
+          "Would you like me to explain the practical benefits and career opportunities associated with this course?",
+
+         "I want you to have complete clarity before making a decision. What would you like to discuss next?"
+           
         ]
         return continuations[0]  # Can rotate these
     

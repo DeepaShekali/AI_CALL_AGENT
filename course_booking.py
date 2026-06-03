@@ -8,32 +8,38 @@ from booking_system import (
 
 class CourseBookingManager:
     """Manages course selection and demo slot booking"""
-    
+
     def get_course_selection_message(self):
         """Ask student which course they want"""
         return (
-            "మీరు ఏ course నుండి interested ఉంటారు బ్రో? "
-            "We offer two main courses బ్రో: "
-            "1. Python Full Stack - 8 weeks బ్రో, 12,000 INR (after discount) బ్రో "
-            "2. Java Full Stack - 10 weeks బ్రో, 14,000 INR (after discount) బ్రో. "
-            "Please say 'Python' లేదా 'Java' లేదా 'Python Full Stack' లేదా 'Java Full Stack' బ్రో."
+        "Which course are you interested in? "
+        "We offer two main programs: "
+        "1. Python Full Stack - 8 weeks, ₹12,000 (after discount) "
+        "2. Java Full Stack - 10 weeks, ₹14,000 (after discount). "
+        "Please choose: Python, Java, Python Full Stack, or Java Full Stack."
         )
-    
     def get_course_confirmation(self, course_name):
         """Confirm course selection and offer demo"""
         course = get_course_info(course_name)
         if not course:
-            return None
-        
+           return None
+
         return (
-            f"బాగుందా బ్రో! నీరు {course['name']} చేయాలనుకుంటున్నారా బ్రో. చాలా బాగుంది బ్రో! "
-            f"Duration: {course['duration']} బ్రో, Topics: {', '.join(course['topics'])} బ్రో. "
-            f"ఈ course about free demo class ఉంది బ్రో - "
-            f"next batch {course['next_batch']} నుండి start అవుతుంది బ్రో. "
-            f"Free demo class నీ convenient day లో చేయవచ్చు బ్రో. "
-            f"Demo లో live coding, actual mentors, and doubts clarification ఉంటుంది బ్రో. "
-            f"మీరు free demo class కి interested ఉంటారా బ్రో? Yes or no బ్రో?"
-        )
+        f"Excellent choice! You are interested in the {course['name']} program. "
+        f"This is a great decision for building a strong technical career. "
+
+        f"The course duration is {course['duration']}, and it covers "
+        f"{', '.join(course['topics'])}. "
+
+        f"We also provide a free demo session where you can experience live coding, "
+        f"interact with mentors, and clarify all your doubts. "
+
+        f"Our next batch starts on {course['next_batch']}. "
+
+        f"The demo session can be scheduled on a convenient date for you. "
+
+        f"Would you like to attend a free demo class and experience the training? Please respond with Yes or No."
+    )
     
     def get_demo_booking_message(self, course_name):
         """Offer to book demo slot"""
@@ -69,7 +75,7 @@ class CourseBookingManager:
         """Professional closing with booking details"""
         return (
             f"ధన్యవాదాలు బ్రో! మీ booking confirmed బ్రో! "
-            f"Course: {booking['course_name']} బ్రో, "
+            f"Course: {booking['course_name']} బ్రో, " 
             f"Demo Date: {booking['demo_date']} బ్రో, "
             f"Demo Time: {booking['demo_time']} బ్రో. "
             f"ఈ details మీ phone కి message లో కూడా పంపిస్తాం బ్రో. "
