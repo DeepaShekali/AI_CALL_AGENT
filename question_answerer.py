@@ -7,7 +7,7 @@ def detect_question_type(user_text):
     Detect what type of question the student is asking
     Returns the answer from knowledge base
     """
-    text_lower = user_text.lower()
+    text_lower = user_text.lower()  
     
     # Check for self-introduction or assistant capabilities
     if any(word in text_lower for word in ["who are you", "who r you", "what is your name", "introduce yourself", "tell me about yourself", "who is speaking", "who is this"]):
